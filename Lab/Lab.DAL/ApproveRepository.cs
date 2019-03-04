@@ -2,10 +2,24 @@
 {
     public class ApproveRepository
     {
+        private IApproveAdapter _adapter;
+
+        public IApproveAdapter Adapter
+        {
+            get
+            {
+                if (this._adapter == null)
+                {
+                    this._adapter = new ApproveAdapter();
+                }
+                return this._adapter;
+            }
+            set => this._adapter = value;
+        }
+
         public string GetStatus()
         {
-            IApproveAdapter adapter = new ApproveAdapter();
-            var status = adapter.GetStatus();
+            var status = this.Adapter.GetStatus();
             if (status == "99")
             {
                 return "成功";
