@@ -18,8 +18,17 @@ namespace Lab.DAL.UnitTest
         public void 調用簽核狀態_預期得到暫止()
         {
             var repository = new ApproveRepository();
+            repository.Adapter = new FakeApproveAdapter();
             var status = repository.GetStatus();
             Assert.AreEqual("暫止",status);
+        }
+    }
+
+    public class FakeApproveAdapter : IApproveAdapter
+    {
+        public string GetStatus()
+        {
+            return "98";
         }
     }
 }

@@ -25,7 +25,7 @@
                 return "成功";
             }
 
-            return null;
+            return "暫止";
         }
     }
 }
