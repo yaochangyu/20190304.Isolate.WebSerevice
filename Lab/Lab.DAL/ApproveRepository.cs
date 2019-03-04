@@ -1,4 +1,6 @@
-﻿namespace Lab.DAL
+﻿using System.Collections.Generic;
+
+namespace Lab.DAL
 {
     public class ApproveRepository
     {
@@ -20,12 +22,14 @@
         public string GetStatus()
         {
             var status = this.Adapter.GetStatus();
-            if (status == "99")
-            {
-                return "成功";
-            }
 
-            return "暫止";
+            var lookup = new Dictionary<string, string>()
+            {
+                {"99","成功"},
+                {"98","暫止"},
+
+            };
+            return lookup[status];
         }
     }
 }
