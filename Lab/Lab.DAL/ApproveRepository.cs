@@ -14,6 +14,7 @@ namespace Lab.DAL
                 {
                     this._adapter = new ApproveAdapter();
                 }
+
                 return this._adapter;
             }
             set => this._adapter = value;
@@ -23,11 +24,11 @@ namespace Lab.DAL
         {
             var status = this.Adapter.GetStatus();
 
-            var lookup = new Dictionary<string, string>()
+            var lookup = new Dictionary<string, string>
             {
-                {"99","成功"},
-                {"98","暫止"},
-
+                {"99", "成功"},
+                {"98", "暫止"},
+                {"1", "開立"}
             };
             return lookup[status];
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 
 namespace Lab.DAL.UnitTest
 {
@@ -27,7 +28,9 @@ namespace Lab.DAL.UnitTest
         public void 調用簽核狀態_預期得到開立()
         {
             var repository = new ApproveRepository();
-            repository.Adapter = new FakeApproveAdapter();
+            var adapter = NSubstitute.Substitute.For<IApproveAdapter>();
+            adapter.GetStatus().Returns("1");
+            repository.Adapter = adapter;
             var status = repository.GetStatus();
             Assert.AreEqual("開立",status);
         }
