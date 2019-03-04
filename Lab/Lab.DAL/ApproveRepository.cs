@@ -4,7 +4,14 @@
     {
         public string GetStatus()
         {
-            throw new System.NotImplementedException();
+            IApproveAdapter adapter = new ApproveAdapter();
+            var status = adapter.GetStatus();
+            if (status == "99")
+            {
+                return "成功";
+            }
+
+            return null;
         }
     }
 }
